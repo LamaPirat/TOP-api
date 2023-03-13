@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOP-api</title>
+  </head>
+  <body>
+    <input type="text" />
+    <button onclick="newGif()">Get gif</button>
+    <img src="#" alt="" />
+    <script>
+      const img = document.querySelector("img");
+      const input = document.querySelector("input");
+
+      //function newGif() {
+      //let userReq = input.value;
+      //     fetch(
+      //       `https://api.giphy.com/v1/gifs/translate?api_key=VrqpStd3Gz57iBgjasM2rk0mefd1Pkzz&s=${userReq}`,
+      //       { mode: "cors" }
+      //     )
+      //       .then(function (response) {
+      //         return response.json();
+      //       })
+      //       .then(function (response) {
+      //         img.src = response.data.images.original.url;
+      //       })
+      //       .catch((e) => {
+      //         console.log(e);
+      //       });
+      //   }
+      //}
+      async function newGif() {
+        let userReq = input.value;
+        try {
+          const response = await fetch(
+            `https://api.giphy.com/v1/gifs/translate?api_key=VrqpStd3Gz57iBgjasM2rk0mefd1Pkzz&s=${userReq}`,
+            { mode: "cors" }
+          );
+          const apiData = await response.json();
+          img.src = apiData.data.images.original.url;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+  </body>
+</html>
